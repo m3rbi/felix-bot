@@ -15,8 +15,7 @@ class TorrentRecord:
 	def from_dict(data):
 		return TorrentRecord(data.get('name'),
 							 data.get('size'),
-							 data.get('info_hash'))
-
+							 data.get('info_hash') or data.get('hash'))
 
 
 def bytesize_format(num):
