@@ -1,0 +1,43 @@
+version: "3.3"
+services:
+  torrent-client:
+    image: linuxserver/qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+    ports:
+      - "8080:8080"
+    volumes:
+            - /opt/felix-bot/downloads:/downloads
+            - /opt/felix-bot/torrent-client/appdata/config:/config
+    restart: unless-stopped
+  
+  torrent-controller:
+    build:
+      context: controller/
+    environment:
+      - TORRENT_CLIENT=http://torrent-client:8080
+      - TELEGRAM_TOKEN=$TELEGRAM_TOKEN
+    restart: unless-stopped
+  
+  plex-server:
+    image: linuxserver/plex
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+      - PLEX_CLAIM=$PLEX_CLAIM
+    volumes:
+      - /opt/felix-bot/downloads:/media
+      - /opt/felix-bot/plex-server/library:/config
+    ports:
+      - 32400:32400
+      - 3005:3005/tcp
+      - 8324:8324/tcp
+      - 32469:32469/tcp
+      - 1900:1900/udp
+      - 32410:32410/udp
+      - 32412:32412/udp
+      - 32413:32413/udp
+      - 32414:32414/udp
+    restart: unless-stopped
