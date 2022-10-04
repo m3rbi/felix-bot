@@ -11,6 +11,9 @@ class TorrentController:
 	def download_magnet(self, magnet_link):
 		self.client.download_from_link(magnet_link)
 
+	def delete_info_hash(self, info_hash):
+		self.client.delete_permanently(info_hash)
+
 	def list_all_torrents(self):
 		return self._get_torrents_by_filter(lambda _: True)
 
