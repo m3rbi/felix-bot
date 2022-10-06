@@ -5,6 +5,7 @@ from search_torrent_handler import search_torrent_handler
 
 from keyboard_actions_handler import handle_keyboard_callback
 from delete_torrent_handler import delete_torrent_handler
+from cancel import handle_cancel
 
 
 from env import get_bot_token, get_torrent_client_url
@@ -14,6 +15,8 @@ def main():
     client_url = get_torrent_client_url()
 
     application = ApplicationBuilder().token(get_bot_token()).build()
+
+    application.add_handler(CommandHandler('cancel', handle_cancel))
 
     application.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), search_torrent_handler))
     application.add_handler(CommandHandler('delete', delete_torrent_handler))
