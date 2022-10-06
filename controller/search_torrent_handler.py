@@ -2,7 +2,6 @@ from re import I
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 from keyboard_actions_handler import DOWNLOAD
-
 from torrent_query import TorrentQuery
 
 

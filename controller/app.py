@@ -2,6 +2,7 @@ import telegram
 from telegram.ext import ApplicationBuilder, MessageHandler, filters, CallbackQueryHandler, CommandHandler
 from list_torrents_handlers import get_list_all_torrents_handler, get_list_downloading_torrents_handler, get_list_finished_torrents_handler
 from search_torrent_handler import search_torrent_handler
+
 from keyboard_actions_handler import handle_keyboard_callback
 from delete_torrent_handler import delete_torrent_handler
 
