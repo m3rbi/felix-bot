@@ -1,8 +1,7 @@
+from re import I
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import ContextTypes, CallbackContext
-from torrent_controller import TorrentController
-from keboard_actions_handler import DOWNLOAD
-
+from telegram.ext import ContextTypes
+from keyboard_actions_handler import DOWNLOAD
 from torrent_query import TorrentQuery
 
 
