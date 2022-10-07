@@ -4,8 +4,8 @@ from torrent_controller import TorrentController
 from env import get_torrent_client_url
 
 
-DOWNLOAD = "DOWNLOAD"
-DELETE = "DELETE"
+DOWNLOAD = "0" 
+DELETE = "1"
 
 
 async def handle_download(download_data: str, query: CallbackQuery):
@@ -28,8 +28,8 @@ CALLBACK_ACTIONS = {
 async def handle_keyboard_callback(update: Update, context: CallbackContext):
     query = update.callback_query
 
-    query.answer()
+    await query.answer()
 
     for key, action in CALLBACK_ACTIONS.items():
         if query.data.startswith(key):
-            return await action(query.data[len(key):], query)
+            return await action(query.data[len(key):].strip(), query)
